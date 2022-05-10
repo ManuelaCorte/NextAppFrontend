@@ -12,7 +12,8 @@ export default createStore({
     rooms:[],
     reservations:[],
     userReservations:[],
-    userClubs: []
+    userClubs: [],
+    clubNews: []
   },
   getters: {
     isLoggedIn(state){
@@ -51,7 +52,7 @@ export default createStore({
   },
   mutations: {
     setRegister(state) {
-      state.status = 'succesfully registered'
+      state.status = 'successfully registered'
     },
     setLogin(state, {token, user}){
       state.status = "successfully logged in"
@@ -270,7 +271,6 @@ export default createStore({
               }
             })
           });
-          //console.log(filteredClubs)
           commit("setUserClubs", filteredClubs)
           resolve(response)
         }).catch(err=>{
@@ -291,8 +291,7 @@ export default createStore({
           reject(err)
         })
       })
-    }
-
+    },
 
   },
   modules: {

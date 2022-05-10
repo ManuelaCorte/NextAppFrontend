@@ -58,5 +58,7 @@
 </template>
 
 <style>
-
+  @media (min-width: 992px) {
+  .rounded-lg-3 { border-radius: .3rem; }
+}
 </style>

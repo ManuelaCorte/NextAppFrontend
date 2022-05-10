@@ -8,6 +8,7 @@ import RegisterView from '../views/RegisterView.vue'
 import ReservationView from '../views/ReservationView.vue'
 import NewsView from '../views/NewsView.vue'
 import CustomRoom from '../components/customRoom.vue'
+import CustomClub from '../components/customClub.vue'
 import DashBoard from '../views/DashBoard.vue'
 import NoAuthenticated from "../views/noAuthenticated.vue"
 
@@ -27,6 +28,12 @@ const routes = [
     path: '/clubs',
     name: 'clubs',
     component: ClubsView 
+  },
+  {
+    path: '/clubs/:id',
+    name: 'club',
+    component: CustomClub ,
+    props: true
   },
   {
     path: '/register',
@@ -69,9 +76,14 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLoggedIn
   if (isLoggedIn) {
-    next()
+    if(to.name == "home"){
+      next({name: "dashboard"})
+    }else{
+      next()
+    }
+    
   } else {
-      if(to.name == "home" || to.name == "login" || to.name == "noAuth"){
+      if(to.name == "home" || to.name == "login" || to.name == "noAuth" || to.name == "register"){
         next();
       }else{
         next({name: "noAuth"})

@@ -19,7 +19,6 @@ import { defineComponent } from "vue";
                     <strong class="d-inline-block mb-2 text-primary">{{club}}</strong>
                     <h3 class="mb-2"><strong>{{title}}</strong></h3>
                     <p class="card-text mb-auto">{{body}}</p>
-                    <a href="#" class="stretched-link">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                 <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">

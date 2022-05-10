@@ -9,7 +9,7 @@ import { defineComponent } from "vue";
     <p>
         You need to log in before accessing the resource
     </p>
-    <router-link to="\">
-        <button> Go to homepage </button>
-    </router-link>
+    <button @click="this.$router.push('/')">
+        Go to homepage
+    </button>
 </template>
