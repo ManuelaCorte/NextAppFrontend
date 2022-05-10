@@ -1,0 +1,224 @@
+{
+  "clubs": [
+    {
+      "id": 0,
+      "name": "Robotic",
+      "handler": "Mario Rossi",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "subscribers": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Quantum Physics",
+      "handler": "Giulia Bianchi",
+      "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. ",
+      "subscribers": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Spanish",
+      "handler": "Sara Savio",
+      "description": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "subscribers": [
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Linguistics",
+      "handler": "Mario Rossi",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "subscribers": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": 0,
+      "name": "Aula 1",
+      "total_seat": 25,
+      "reservations": {
+        "date": "01/05/2022",
+        "slots": [
+          {
+            "id": 0,
+            "start": "8",
+            "end": "9",
+            "emptySeats": 3
+          },
+          {
+            "id": 1,
+            "start": "9",
+            "end": "10",
+            "emptySeats": 10
+          },
+          {
+            "id": 2,
+            "start": "10",
+            "end": "11",
+            "emptySeats": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "name": "Aula 2",
+      "total_seat": 10,
+      "reservations": {
+        "date": "01/05/2022",
+        "slots": [
+          {
+            "id": 0,
+            "start": "8",
+            "end": "9",
+            "emptySeats": 5
+          },
+          {
+            "id": 1,
+            "start": "9",
+            "end": "10",
+            "emptySeats": 10
+          },
+          {
+            "id": 2,
+            "start": "10",
+            "end": "11",
+            "emptySeats": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Aula 3",
+      "total_seat": 30,
+      "reservations": {
+        "date": "01/05/2022",
+        "slots": [
+          {
+            "id": 0,
+            "start": "8",
+            "end": "9",
+            "emptySeats": 7
+          },
+          {
+            "id": 1,
+            "start": "9",
+            "end": "10",
+            "emptySeats": 20
+          },
+          {
+            "id": 2,
+            "start": "10",
+            "end": "11",
+            "emptySeats": 18
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Aula 4",
+      "total_seat": 20,
+      "reservations": {
+        "date": "01/05/2022",
+        "slots": [
+          {
+            "id": 0,
+            "start": "8",
+            "end": "9",
+            "emptySeats": 3
+          },
+          {
+            "id": 1,
+            "start": "9",
+            "end": "10",
+            "emptySeats": 0
+          },
+          {
+            "id": 2,
+            "start": "10",
+            "end": "11",
+            "emptySeats": 5
+          }
+        ]
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "name": "user0",
+      "email": "usr0@gmail.com",
+      "password": "pass0"
+    },
+    {
+      "id": 1,
+      "name": "user1",
+      "email": "usr1@gmail.com",
+      "password": "pass1"
+    },
+    {
+      "id": 2,
+      "name": "example",
+      "email": "example@gmail.com",
+      "password": "$2a$10$LMIwmXFemaWDlWx/RkCEbuA4yNn0lh4b1DWwiX.5/8FnPvg7qXn0q"
+    }
+  ],
+  "news": [
+    {
+      "id": 0,
+      "title": "Title 1",
+      "club": 0,
+      "date": "01/05/2022",
+      "body": " Etiam vulputate imperdiet est ut euismod. Curabitur blandit justo sed iaculis eleifend. Phasellus accumsan, augue in rhoncus pretium, leo felis molestie justo, sit amet ullamcorper justo neque non libero. Etiam sit amet tristique mauris. Etiam bibendum dictum lacinia. Donec id commodo sapien, id rutrum odio. Fusce id eros eget justo molestie varius eget posuere justo. Donec auctor odio dolor, ac luctus purus convallis in. In justo erat, eleifend in ipsum non, porttitor tempus erat. Suspendisse pellentesque quis leo sed egestas. Aliquam leo eros, tincidunt in vestibulum in, fermentum sed ex. Nam hendrerit ultricies urna, et scelerisque ante aliquam quis. Maecenas sed ligula non nunc fringilla tempor. Duis laoreet lacus quis purus sagittis tristique. Morbi condimentum mauris dui, vel finibus dui dapibus sed. Nulla in est ac libero molestie viverra ut eu libero. Integer fringilla dolor velit, ac facilisis sapien dapibus quis. Sed rutrum ut nisl quis ullamcorper. Duis egestas augue vitae sem laoreet, eget semper leo tincidunt. Nulla pulvinar placerat velit, in efficitur ante facilisis sit amet. Pellentesque eget leo scelerisque, sollicitudin urna imperdiet, viverra risus. Curabitur eu commodo erat. Nullam nec ex non justo consectetur tempor eu id libero."
+    },
+    {
+      "id": 1,
+      "title": "Title 2",
+      "club": 1,
+      "date": "05/05/2022",
+      "body": " Fusce viverra posuere orci, consectetur finibus dolor. Vivamus et varius nibh. Pellentesque a imperdiet orci, non mollis est. Nulla orci nibh, ornare vel pellentesque quis, fringilla nec quam. Nunc ullamcorper, ante sed fringilla porta, lacus ligula maximus eros, aliquet lobortis justo turpis eu dolor. Sed tincidunt, tellus nec dignissim lacinia, orci neque lobortis tellus, in pretium elit libero in urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut blandit, est et rutrum aliquam, nisl dolor vehicula massa, in tempor mi orci at ex. Sed bibendum, neque eget dignissim mattis, purus risus congue enim, in condimentum nisi augue in est. Fusce eget augue urna. Nam quis bibendum lorem. Maecenas eleifend sapien eleifend, aliquam massa at, vehicula ante. Suspendisse tincidunt aliquet nisi id venenatis. Suspendisse lacinia tortor justo. Curabitur suscipit id orci eu vehicula. Sed cursus arcu eget velit ultricies aliquet. Etiam vulputate imperdiet est ut euismod. Curabitur blandit justo sed iaculis eleifend. Phasellus accumsan, augue in rhoncus pretium, leo felis molestie justo, sit amet ullamcorper justo neque non libero. Etiam sit amet tristique mauris. Etiam bibendum dictum lacinia. Donec id commodo sapien, id rutrum odio. Fusce id eros eget justo molestie varius eget posuere justo. Donec auctor odio dolor, ac luctus purus convallis in. In justo erat, eleifend in ipsum non, porttitor tempus erat. Suspendisse pellentesque quis leo sed egestas. Aliquam leo eros, tincidunt in vestibulum in, fermentum sed ex."
+    }
+  ],
+  "reservations": [
+    {
+      "id": 34,
+      "user": 1,
+      "room": 3,
+      "slot": 2,
+      "date": "13/5/2022"
+    },
+    {
+      "id": 24,
+      "user": 0,
+      "room": 3,
+      "slot": 2,
+      "date": "27/5/2022"
+    },
+    {
+      "id": 63,
+      "user": 1,
+      "room": 0,
+      "slot": 1,
+      "date": "10/5/2022"
+    },
+    {
+      "id": 87,
+      "user": 2,
+      "room": 0,
+      "slot": 1,
+      "date": "27/5/2022"
+    }
+  ]
+}
