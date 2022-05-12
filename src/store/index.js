@@ -109,7 +109,7 @@ export default createStore({
           localStorage.setItem('token', token)
           localStorage.setItem('user', JSON.stringify(user))
 
-          axios.defaults.headers.common['Authorization'] = "Bearer" +token
+          
           commit('setLogin', {token, user})
           resolve(response)
         }).catch(err => { 
@@ -126,17 +126,13 @@ export default createStore({
       return new Promise((resolve, reject)=>{
         axios.post("http://localhost:3000/users",{
           id: user.id,
-          name: user.name,
           email: user.email,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
           password: user.password
         }).then(response=>{
-            const token = response.data.token
-            const user  = response.data.user
 
-            localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
-
-            axios.defaults.headers.common['Authorization'] = "Bearer" +token
             commit('setRegister')
 
             resolve(response)

@@ -157,22 +157,28 @@
   ],
   "users": [
     {
-      "id": 0,
-      "name": "user0",
-      "email": "usr0@gmail.com",
-      "password": "pass0"
-    },
-    {
-      "id": 1,
-      "name": "user1",
-      "email": "usr1@gmail.com",
-      "password": "pass1"
-    },
-    {
       "id": 2,
-      "name": "example",
+      "username": "example",
       "email": "example@gmail.com",
-      "password": "$2a$10$LMIwmXFemaWDlWx/RkCEbuA4yNn0lh4b1DWwiX.5/8FnPvg7qXn0q"
+      "password": "$2a$10$LMIwmXFemaWDlWx/RkCEbuA4yNn0lh4b1DWwiX.5/8FnPvg7qXn0q",
+      "firstName": "name1",
+      "lastName": "surname1"
+    },
+    {
+      "email": "user0@gmail.com",
+      "password": "$2a$10$5lm91ky47prtyBd.yZEzh./AExVoLw/O0LcsXWujPpQkCHXpyistu",
+      "id": 0,
+      "username": "user0",
+      "firstName": "name0",
+      "lastName": "surname0"
+    },
+    {
+      "email": "user1@gmail.com",
+      "password": "$2a$10$krmM1OG3V/Ri7FArrDGfnemh6.KafrLJyQRfm3bLvU6EH7K3Ia9yi",
+      "id": 1,
+      "username": "user1",
+      "firstName": "name1",
+      "lastName": "surname1"
     }
   ],
   "news": [
@@ -224,25 +230,18 @@
       "date": "10/5/2022"
     },
     {
-      "id": 87,
-      "user": 2,
-      "room": 0,
-      "slot": 1,
-      "date": "27/5/2022"
-    },
-    {
-      "id": 74,
+      "id": 70,
       "user": 2,
       "room": 3,
       "slot": 0,
-      "date": "21/5/2022"
+      "date": "12/5/2022"
     },
     {
-      "id": 72,
+      "id": 3,
       "user": 2,
       "room": 3,
       "slot": 2,
-      "date": "13/5/2022"
+      "date": "12/5/2022"
     }
   ]
 }

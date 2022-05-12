@@ -5,6 +5,7 @@ export default defineComponent({
     data() {
         return {
             reservations: [],
+            chosenReservation: 0,
             news: [],
             clubs: [],
             showNews: true
@@ -67,13 +68,15 @@ export default defineComponent({
                 if (~index) {
                     this.reservations.splice(index, 1)
                 }
+                document.getElementById("confirm").hide()
             }).catch(err => {
                 console.log(err)
             })
-
         }
     }
 })
+
+
 </script>
 
 <template>
@@ -96,8 +99,9 @@ export default defineComponent({
                             <td> {{ reservation.date }} </td>
                             <td> {{ reservation.room }} </td>
                             <td> {{ reservation.slot }} </td>
-                            <td><button class="btn btn-primary align-end" @click="deleteReservation(reservation.id)">
-                                    Delete reservation</button></td>
+                            <td><button class="btn btn-primary align-end" data-bs-toggle="modal" data-bs-target="#confirm" 
+                                @click="()=> this.$data.chosenReservation = reservation.id"> Delete reservation </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -115,9 +119,7 @@ export default defineComponent({
                 <br><br>
                 <div v-if="showNews">
                     <div v-for="item in news" :key="item.id">
-                        <CustomNews :id=item.id :title=item.title :club=item.club :body=item.body>
-                        </CustomNews>
-
+                        <CustomNews :id=item.id :title=item.title :club=item.club :body=item.body> </CustomNews>
                     </div>
                 </div>
                 <div v-else>
@@ -126,10 +128,34 @@ export default defineComponent({
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="confirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Confirm choise</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this reservation?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary"
+                        @click="deleteReservation(chosenReservation)">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
-a, a:hover, a:active, a:visited, a:link{
+a,
+a:hover,
+a:active,
+a:visited,
+a:link {
     font-weight: bold;
     text-decoration: none;
     border-radius: 6px;
@@ -139,6 +165,4 @@ a, a:hover, a:active, a:visited, a:link{
     color: white;
     background-color: red;
 }
-
-
 </style>

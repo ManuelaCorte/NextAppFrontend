@@ -5,24 +5,30 @@ import { defineComponent } from "vue"
     export default defineComponent({
         data(){
             return {
-                name: "",
+                username: "",
                 email: "",
-                password: ""
+                password: "",
+                firstName: "",
+                lastName: "",
             }
         },
         methods:{
             handleSubmit(){
                 let id = Math.floor(Math.random()*100)
-                let name = this.name
+                let username = this.username
                 let email = this.email
                 let password = this.password
+                let firstName = this.firstName
+                let lastName = this.lastName
                 this.$store.dispatch("register",{
                     id,
-                    name,
+                    username,
                     email,
-                    password
+                    password,
+                    firstName,
+                    lastName
                 }).then(()=>{
-                    this.$router.push("/login")
+                    this.$router.push("/")
                 }).catch(err=>{
                     console.log(err)
                 })
@@ -38,15 +44,23 @@ import { defineComponent } from "vue"
         <form @submit.prevent="handleSubmit()" class="p-4 p-md-5 border rounded-3 bg-light">
           <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
           <div class="form-floating mb-3">
-            <input v-model="email" type="email" class="form-control" id="floatingMail" placeholder="name@example.com">
+            <input v-model="email" type="email" class="form-control"  placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
           </div>
           <div class="form-floating mb-3">
-            <input v-model="name" type="text" class="form-control" id="floatingName" placeholder="name">
-            <label for="floatingInput">Name</label>
+            <input v-model="username" type="text" class="form-control" placeholder="username">
+            <label for="floatingInput">Username</label>
           </div>
           <div class="form-floating mb-3">
-            <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input v-model="firstName" type="text" class="form-control" placeholder="firstname">
+            <label for="floatingInput">First Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input v-model="lastName" type="text" class="form-control"  placeholder="lastname">
+            <label for="floatingInput">Last Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input v-model="password" type="password" class="form-control" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
           <div class="mb-3">
