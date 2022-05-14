@@ -2,8 +2,8 @@
 
 ## Project setup
 ```
-clone repository: git clone https://github.com/ManuelaCorte/NextAppFrontend/
-```
+git clone https://github.com/ManuelaCorte/NextAppFrontend/
+cd NextAppFrontend/
 npm install
 ```
 
