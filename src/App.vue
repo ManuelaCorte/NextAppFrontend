@@ -47,7 +47,7 @@ import { defineComponent } from "vue"
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown01">
-              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><router-link class="dropdown-item" to="/settings">Settings</router-link></li>
               <li><a class="dropdown-item" @click="logout()">Logout</a></li>
             </ul>
           </li>

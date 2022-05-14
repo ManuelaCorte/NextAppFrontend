@@ -11,7 +11,7 @@ import CustomRoom from '../components/customRoom.vue'
 import CustomClub from '../components/customClub.vue'
 import DashBoard from '../views/DashBoard.vue'
 import NoAuthenticated from "../views/noAuthenticated.vue"
-
+import SettingsView from '@/views/SettingsView.vue'
 
 const routes = [
   {
@@ -65,7 +65,13 @@ const routes = [
     path: "/noAuth",
     name: "noAuth",
     component: NoAuthenticated
+  },
+  {
+    path: "/settings",
+    name: "settings",
+    component: SettingsView
   }
+  
 ]
 
 const router = createRouter({

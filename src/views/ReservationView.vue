@@ -28,6 +28,9 @@ export default defineComponent({
         },
         user() {
             return this.$store.getters.getUser
+        },
+        userReservations(){
+            return this.$store.getters.getUserReservations
         }
     },
     mounted() {

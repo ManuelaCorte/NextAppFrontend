@@ -1,6 +1,10 @@
 <script>
+import { Modal } from "bootstrap";
 import { defineComponent } from "vue";
-import CustomNews from "@/components/customNews.vue";
+import CustomNews from "../components/customNews.vue";
+//import myAlert from "../components/myAlert.vue";
+
+
 export default defineComponent({
     data() {
         return {
@@ -8,70 +12,67 @@ export default defineComponent({
             chosenReservation: 0,
             news: [],
             clubs: [],
-            showNews: true
-        }
+            showNews: true,
+            
+        };
     },
     computed: {
         user() {
-            return this.$store.getters.getUser
+            return this.$store.getters.getUser;
         },
         userReservations() {
-            return this.$store.getters.getUserReservations
+            return this.$store.getters.getUserReservations;
         },
         userClubs() {
-            return this.$store.getters.getUserClubs
+            return this.$store.getters.getUserClubs;
         },
         loadedNews() {
-            return this.$store.getters.getNews
+            return this.$store.getters.getNews;
         }
     },
     mounted() {
-        this.$store.dispatch("userReservations", this.user.id
-        ).then(() => {
-            this.reservations = this.userReservations
+        this.$store.dispatch("userReservations", this.user.id).then(() => {
+            this.reservations = this.userReservations;
         }).catch(err => {
-            console.log(err)
-        })
-
-        this.$store.dispatch("userClubs", this.user.id
-        ).then(() => {
-            this.clubs = this.userClubs
+            console.log(err);
+        });
+        this.$store.dispatch("userClubs", this.user.id).then(() => {
+            this.clubs = this.userClubs;
             //console.log(this.clubs)
         }).catch(err => {
-            console.log(err)
-        })
-        this.$store.dispatch("news"
-        ).then(() => {
+            console.log(err);
+        });
+        this.$store.dispatch("news").then(() => {
             this.clubs.forEach(club => {
                 this.loadedNews.forEach(news => {
                     if (news.club == club.id) {
-                        this.news.push(news)
+                        this.news.push(news);
                     }
-                })
+                });
             });
             //console.log(this.news)
         }).catch(err => {
-            console.log(err)
-        })
-
-
+            console.log(err);
+        });
     },
     components: {
         CustomNews
+        //myAlert
     },
     methods: {
         deleteReservation(reservationId) {
-            this.$store.dispatch("deleteUserReservation", reservationId
-            ).then(() => {
-                this.reservations = this.userReservations
-                const index = this.reservations.findIndex(reservation => reservation.id === reservationId)
+            this.$store.dispatch("deleteUserReservation", reservationId).then(() => {
+                this.reservations = this.userReservations;
+                const index = this.reservations.findIndex(reservation => reservation.id === reservationId);
                 if (~index) {
-                    this.reservations.splice(index, 1)
+                    this.reservations.splice(index, 1);
                 }
-                document.getElementById("confirm").hide()
+                var myModalEl = document.getElementById('confirm')
+                var modal = Modal.getInstance(myModalEl)
+                modal.hide()
             }).catch(err => {
-                console.log(err)
-            })
+                console.log(err);
+            });
         }
     }
 })
@@ -80,7 +81,9 @@ export default defineComponent({
 </script>
 
 <template>
+
     <div class="container">
+
         <div class="row">
             <div class="col">
                 <h1>My reservations</h1>
@@ -99,8 +102,12 @@ export default defineComponent({
                             <td> {{ reservation.date }} </td>
                             <td> {{ reservation.room }} </td>
                             <td> {{ reservation.slot }} </td>
-                            <td><button class="btn btn-primary align-end" data-bs-toggle="modal" data-bs-target="#confirm" 
-                                @click="()=> this.$data.chosenReservation = reservation.id"> Delete reservation </button>
+                            <td>
+                                <button class="btn btn-primary align-end" data-bs-toggle="modal"
+                                    data-bs-target="#confirm" @click="() => {
+                                        this.$data.chosenReservation = reservation.id
+                                    }">
+                                    Delete reservation </button>
                             </td>
                         </tr>
                     </tbody>
@@ -128,13 +135,13 @@ export default defineComponent({
             </div>
         </div>
     </div>
-
+    
     <div class="modal fade" id="confirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Confirm choise</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Confirm deletion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -142,8 +149,7 @@ export default defineComponent({
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary"
-                        @click="deleteReservation(chosenReservation)">Yes</button>
+                    <button type="button" class="btn btn-primary" @click="deleteReservation(chosenReservation)">Yes</button>
                 </div>
             </div>
         </div>
@@ -164,5 +170,16 @@ a:link {
     padding: 10px;
     color: white;
     background-color: red;
+}
+
+.example {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 400px;
+    background: gray;
+    text-align: center
 }
 </style>
