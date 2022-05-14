@@ -4,7 +4,7 @@
 ```
 clone repository: git clone https://github.com/ManuelaCorte/NextAppFrontend/
 ```
-cd /NextAppFrontend
+move to repository directory: cd /NextAppFrontend
 ```
 npm install
 ```
