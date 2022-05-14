@@ -2,6 +2,10 @@
 
 ## Project setup
 ```
+clone repository: git clone https://github.com/ManuelaCorte/NextAppFrontend/
+```
+cd /NextAppFrontend
+```
 npm install
 ```
 
@@ -19,6 +23,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
