@@ -157,14 +157,6 @@
   ],
   "users": [
     {
-      "id": 2,
-      "username": "example",
-      "email": "example@gmail.com",
-      "password": "$2a$10$n5u7saDNnpQITAfA4c/y.uIaE/VdY8D4E3XyFa5ahAPU2Ijo60rrS",
-      "firstName": "name1",
-      "lastName": "surname1"
-    },
-    {
       "email": "user0@gmail.com",
       "password": "$2a$10$5lm91ky47prtyBd.yZEzh./AExVoLw/O0LcsXWujPpQkCHXpyistu",
       "id": 0,
@@ -179,6 +171,14 @@
       "username": "user1",
       "firstName": "name1",
       "lastName": "surname1"
+    },
+    {
+      "email": "example@gmail.com",
+      "password": "$2a$10$.uOvUZa6mT1MUd2QGfZEnuFQOBynsdALQr8pVjQ5xBAs.gPV9COFG",
+      "id": 2,
+      "username": "example",
+      "firstName": "name 1",
+      "lastName": "surname 1"
     }
   ],
   "news": [
@@ -234,6 +234,13 @@
       "user": 2,
       "room": 3,
       "slot": 0,
+      "date": "14/5/2022"
+    },
+    {
+      "id": 15,
+      "user": 2,
+      "room": 2,
+      "slot": 1,
       "date": "14/5/2022"
     }
   ]

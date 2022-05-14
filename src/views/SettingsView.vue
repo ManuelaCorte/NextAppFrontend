@@ -17,13 +17,13 @@ export default defineComponent({
     }
   },
   methods: {
-    changePassword() {
-      axios.get("http://localhost:3000/users/" + this.user.id
+    changePassword(userId) {
+      axios.get("http://localhost:3000/users/" + userId
       ).then(response => {
         const data = response.data
         //console.log(data)
         if (bcrypt.compareSync(this.oldPassword, data.password)) {
-          axios.patch("http://localhost:3000/users/" + this.user.id, {
+          axios.patch("http://localhost:3000/users/" + userId, {
             password: this.newPassword //json-server-auth automatically hashes it
           }).then(() => {
             console.log("Password correttmente cambiata")
@@ -36,7 +36,7 @@ export default defineComponent({
             }).catch(err => {
               console.log(err)
             })
-            
+
           }).catch(err => {
             console.log(err)
           })
@@ -50,6 +50,15 @@ export default defineComponent({
       var myModalEl = document.getElementById('changePassword')
       var modal = Modal.getInstance(myModalEl)
       modal.hide()
+    },
+
+    deleteProfile(userId){
+      axios.delete("http://localhost:3000/users/"+userId
+      ).then(()=>{
+        console.log("User correctly deleted")
+      }).catch(err=>{
+        console.log(err)
+      })
     }
   }
 })
@@ -64,7 +73,7 @@ export default defineComponent({
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="Avatar"
+                <img src="../assets/defaultProfile.jpg" alt="Avatar"
                   class="img-fluid my-5" style="width: 80px;" />
                 <h5>{{ user.username }}</h5>
                 <p>Role</p>
@@ -87,13 +96,22 @@ export default defineComponent({
                   <h6>Options</h6>
                   <hr class="mt-0 mb-4">
                   <div class="row pt-1">
+                    <div class="col">
+                      <label class="form-label" for="customFile">Change your profile picture:</label>
+                      <input type="file" class="form-control" id="customFile">
+                    </div>
+                  </div>
+                  <div class="row pt-1">
+                    <br>
+                  </div>
+                  <div class="row pt-1">
                     <div class="col-6 mb-3">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      <button type="button" class="btn btn-primary h-100" data-bs-toggle="modal"
                         data-bs-target="#changePassword"> Change your password</button>
                     </div>
                     <div class="col-6 mb-3">
-                      <h6>Most Viewed</h6>
-                      <p class="text-muted">Dolor sit amet</p>
+                      <button type="button" class="btn btn-primary h-100" data-bs-toggle="modal"
+                        data-bs-target="#deleteProfile"> Delete your profile</button>
                     </div>
                   </div>
                 </div>
@@ -127,7 +145,25 @@ export default defineComponent({
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" @click="changePassword()">Confirm</button>
+          <button type="button" class="btn btn-primary" @click="changePassword(this.user.id)">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="deleteProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete your account? This action will be permanent.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" @click="deleteProfile(this.user.id)">Confirm</button>
         </div>
       </div>
     </div>

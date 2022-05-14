@@ -63,10 +63,6 @@ import { defineComponent } from "vue"
             <input v-model="password" type="password" class="form-control" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
-          <div class="mb-3">
-            <label class="form-label" for="customFile">Upload profile picture</label>
-            <input type="file" class="form-control" id="customFile">
-          </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
         </form>
       </div>
