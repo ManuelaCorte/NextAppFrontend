@@ -157,28 +157,40 @@
   ],
   "users": [
     {
+      "email": "prova@prova",
+      "password": "$2a$10$3i1xgRXKjOQY5fJCZstveeevsWD8bMexE4K1L3xqQSWgYmPxOzIlq",
+      "id": 3,
+      "username": "prova",
+      "firstName": "prova",
+      "lastName": "prova",
+      "role": "user"
+    },
+    {
       "email": "user0@gmail.com",
-      "password": "$2a$10$5lm91ky47prtyBd.yZEzh./AExVoLw/O0LcsXWujPpQkCHXpyistu",
+      "password": "$2a$10$IMz1uyo2hh/waYlLDh/SyezZVUgR795Jo66SgEyUe8c/zNlEK.9zO",
       "id": 0,
       "username": "user0",
-      "firstName": "name0",
-      "lastName": "surname0"
+      "firstName": "Name0",
+      "lastName": "Surname0",
+      "role": "user"
     },
     {
       "email": "user1@gmail.com",
-      "password": "$2a$10$krmM1OG3V/Ri7FArrDGfnemh6.KafrLJyQRfm3bLvU6EH7K3Ia9yi",
+      "password": "$2a$10$cntkrnla8h4xpb5DhRjIVOKmr67hG5gAJTcTZOdZ/aYbLtjW1rvCK",
       "id": 1,
       "username": "user1",
-      "firstName": "name1",
-      "lastName": "surname1"
+      "firstName": "Name1",
+      "lastName": "Surname1",
+      "role": "user"
     },
     {
       "email": "example@gmail.com",
-      "password": "$2a$10$.uOvUZa6mT1MUd2QGfZEnuFQOBynsdALQr8pVjQ5xBAs.gPV9COFG",
+      "password": "$2a$10$GuhmnHxGbUO8rVJUXC6H8.dOyH86nMNUTH0iAVpvxOcplkBxOJyOK",
       "id": 2,
       "username": "example",
-      "firstName": "name 1",
-      "lastName": "surname 1"
+      "firstName": "name",
+      "lastName": "surname",
+      "role": "admin"
     }
   ],
   "news": [
@@ -230,18 +242,18 @@
       "date": "10/5/2022"
     },
     {
-      "id": 45,
+      "id": 19,
       "user": 2,
-      "room": 3,
+      "room": 0,
       "slot": 0,
-      "date": "14/5/2022"
+      "date": "15/5/2022"
     },
     {
-      "id": 15,
+      "id": 71,
       "user": 2,
-      "room": 2,
-      "slot": 1,
-      "date": "14/5/2022"
+      "room": 0,
+      "slot": 2,
+      "date": "15/5/2022"
     }
   ]
 }

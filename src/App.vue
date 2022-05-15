@@ -39,6 +39,9 @@ import { defineComponent } from "vue"
             <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/dashboardAdmin" class="nav-link">DashboardAdmin</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/clubs" class="nav-link">Clubs</router-link>
           </li>
           <li class="nav-item">

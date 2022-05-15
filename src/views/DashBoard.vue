@@ -36,12 +36,14 @@ export default defineComponent({
         }).catch(err => {
             console.log(err);
         });
+        
         this.$store.dispatch("userClubs", this.user.id).then(() => {
             this.clubs = this.userClubs;
             //console.log(this.clubs)
         }).catch(err => {
             console.log(err);
         });
+        
         this.$store.dispatch("news").then(() => {
             this.clubs.forEach(club => {
                 this.loadedNews.forEach(news => {
@@ -61,18 +63,16 @@ export default defineComponent({
     },
     methods: {
         deleteReservation(reservationId) {
-            this.$store.dispatch("deleteUserReservation", reservationId).then(() => {
-                this.reservations = this.userReservations;
-                const index = this.reservations.findIndex(reservation => reservation.id === reservationId);
-                if (~index) {
-                    this.reservations.splice(index, 1);
-                }
-                var myModalEl = document.getElementById('confirm')
-                var modal = Modal.getInstance(myModalEl)
-                modal.hide()
+            this.$store.dispatch("deleteUserReservation", reservationId
+            ).then(() => {
+                this.reservations= this.reservations.filter(reservation=>reservation.id != reservationId)
+                this.$store.commit("setUserReservations", this.reservations)
             }).catch(err => {
                 console.log(err);
             });
+            var myModalEl = document.getElementById('confirm')
+            var modal = Modal.getInstance(myModalEl)
+            modal.hide()
         }
     }
 })

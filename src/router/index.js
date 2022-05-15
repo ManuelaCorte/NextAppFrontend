@@ -12,6 +12,7 @@ import CustomClub from '../components/customClub.vue'
 import DashBoard from '../views/DashBoard.vue'
 import NoAuthenticated from "../views/noAuthenticated.vue"
 import SettingsView from '@/views/SettingsView.vue'
+import DashboardAdmin from '@/views/DashboardAdmin.vue'
 
 const routes = [
   {
@@ -70,7 +71,13 @@ const routes = [
     path: "/settings",
     name: "settings",
     component: SettingsView
+  },
+  {
+    path: "/dashboardAdmin",
+    name: "dashboardAdmin",
+    component: DashboardAdmin
   }
+  
   
 ]
 

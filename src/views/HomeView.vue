@@ -18,14 +18,11 @@
               email, 
               password
             }).then(()=>{
-              this.flash({
-                message: "User correctly logged in",
-                variant: "success"
-              })
               this.$router.push("/dashboard")
             }).catch(err=>{
               console.log(err)
             })
+          
           }       
         }  
         

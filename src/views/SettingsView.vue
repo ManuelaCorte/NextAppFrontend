@@ -29,7 +29,7 @@ export default defineComponent({
             console.log("Password correttmente cambiata")
             this.oldPassword = ""
             this.newPassword = ""
-            
+
             this.$store.dispatch("logout"
             ).then(() => {
               this.$router.push("/")
@@ -52,13 +52,21 @@ export default defineComponent({
       modal.hide()
     },
 
-    deleteProfile(userId){
-      axios.delete("http://localhost:3000/users/"+userId
-      ).then(()=>{
-        console.log("User correctly deleted")
-      }).catch(err=>{
-        console.log(err)
-      })
+    deleteProfile(userId) {
+      this.$store.dispatch("deleteUser", userId
+      ).then(() => {
+          this.$store.dispatch("logout"
+          ).then(() => {
+            this.$router.push("/")
+          }).catch(err => {
+            console.log(err)
+          })
+      }).catch(err => {
+        console.log(err);
+      });
+      var myModalEl = document.getElementById('deleteProfile')
+      var modal = Modal.getInstance(myModalEl)
+      modal.hide()
     }
   }
 })
@@ -73,8 +81,7 @@ export default defineComponent({
             <div class="row g-0">
               <div class="col-md-4 gradient-custom text-center text-white"
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                <img src="../assets/defaultProfile.jpg" alt="Avatar"
-                  class="img-fluid my-5" style="width: 80px;" />
+                <img src="../assets/defaultProfile.jpg" alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                 <h5>{{ user.username }}</h5>
                 <p>Role</p>
                 <i class="far fa-edit mb-5"></i>
@@ -151,7 +158,7 @@ export default defineComponent({
     </div>
   </div>
 
-<div class="modal fade" id="deleteProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

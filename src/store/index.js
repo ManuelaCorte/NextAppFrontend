@@ -9,52 +9,53 @@ export default createStore({
     token: localStorage.getItem("token") || "",
     clubs: [],
     news: [],
-    rooms:[],
-    reservations:[],
-    userReservations:[],
+    rooms: [],
+    users: [],
+    reservations: [],
+    userReservations: [],
     userClubs: [],
     clubNews: []
   },
   getters: {
-    isLoggedIn(state){
+    isLoggedIn(state) {
       return !!state.token
     },
-    getUser(state){
+    getUser(state) {
       return state.user
     },
-    getAuthStatus(state){
+    getAuthStatus(state) {
       return state.status
     },
-    getClubs(state){
+    getClubs(state) {
       return state.clubs
     },
-    getNews(state){
+    getNews(state) {
       return state.news
     },
-    getNewsClub(state, newId){
+    getNewsClub(state, newId) {
       return state.news[newId].club
     },
-    getRooms(state){
+    getRooms(state) {
       return state.rooms
     },
-    getRoomInfo:(state) => (roomId)=>{
+    getRoomInfo: (state) => (roomId) => {
       return state.rooms[roomId]
     },
-    getReservations(state){
+    getReservations(state) {
       return state.reservations
     },
-    getUserReservations(state){
+    getUserReservations(state) {
       return state.userReservations
-    }, 
-    getUserClubs(state){
+    },
+    getUserClubs(state) {
       return state.userClubs
+    },
+    getUsers(state) {
+      return state.users
     }
   },
   mutations: {
-    setRegister(state) {
-      state.status = 'successfully registered'
-    },
-    setLogin(state, {token, user}){
+    setLogin(state, { token, user }) {
       state.status = "successfully logged in"
       state.token = token
       state.user = user
@@ -67,76 +68,78 @@ export default createStore({
       state.token = ''
       state.user = {}
     },
-    setClubs(state, clubs){
+    setClubs(state, clubs) {
       state.clubs = clubs
     },
-    setNews(state, news){
-      state.news= news
-      if (state.clubs.len == 0){
-        for (const i in news){
+    setNews(state, news) {
+      state.news = news
+      if (state.clubs.len == 0) {
+        for (const i in news) {
           var clubId = state.news[i].club
           state.news[i].club = state.clubs[clubId].name
         }
-      } 
+      }
     },
-    setRooms(state, rooms){
+    setRooms(state, rooms) {
       state.rooms = rooms
     },
-    setRoomInfo(state, room){
-      state.rooms[room.id]=room
+    setRoomInfo(state, room) {
+      state.rooms[room.id] = room
     },
-    setReservations(state, reservations){
+    setReservations(state, reservations) {
       state.reservations = reservations
     },
-    setUserReservations(state, reservations){
+    setUserReservations(state, reservations) {
       state.userReservations = reservations
     },
-    setUserClubs(state, clubs){
+    setUserClubs(state, clubs) {
       state.userClubs = clubs
+    },
+    setUsers(state, users) {
+      state.users = users
     }
-      
+
   },
   actions: {
-    login({commit},user){
-      return new Promise((resolve, reject)=>{
-        axios.post("http://localhost:3000/login",{
-        email: user.email,
-        password: user.password
-        }).then(response=>{
+    login({ commit }, user) {
+      return new Promise((resolve, reject) => {
+        axios.post("http://localhost:3000/login", {
+          email: user.email,
+          password: user.password
+        }).then(response => {
           const token = response.data.accessToken
-          const user  = response.data.user
-          console.log(user)
+          const user = response.data.user
+          //console.log(user)
           localStorage.setItem('token', token)
           localStorage.setItem('user', JSON.stringify(user))
 
-          
-          commit('setLogin', {token, user})
+          commit('setLogin', { token, user })
           resolve(response)
-        }).catch(err => { 
-            commit('setError')
-            localStorage.removeItem('token')
+        }).catch(err => {
+          commit('setError')
+          localStorage.removeItem('token')
 
-            reject(err)
+          reject(err)
 
         })
       })
     },
 
-    register({commit}, user){
-      return new Promise((resolve, reject)=>{
-        axios.post("http://localhost:3000/users",{
+    register({ commit }, user) {
+      return new Promise((resolve, reject) => {
+        axios.post("http://localhost:3000/users", {
           id: user.id,
           email: user.email,
           username: user.username,
           firstName: user.firstName,
           lastName: user.lastName,
+          role: user.role,
           password: user.password
-        }).then(response=>{
+        }).then(response => {
+          console.log("User added")
 
-            commit('setRegister')
-
-            resolve(response)
-        }).catch(err => { 
+          resolve(response)
+        }).catch(err => {
 
           commit('setError')
           localStorage.removeItem('token')
@@ -146,8 +149,8 @@ export default createStore({
       })
     },
 
-    logout({commit}){
-      return new Promise((resolve)=>{
+    logout({ commit }) {
+      return new Promise((resolve) => {
         commit("setLogout")
         localStorage.removeItem("token")
         localStorage.removeItem("user")
@@ -156,14 +159,14 @@ export default createStore({
       })
     },
 
-    clubs({commit}){
-      return new Promise((resolve, reject)=>{
+    clubs({ commit }) {
+      return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/clubs"
-        ).then(response=>{
-            const clubs = response.data
-            commit('setClubs', clubs)
-            resolve(response)
-        }).catch(err => { 
+        ).then(response => {
+          const clubs = response.data
+          commit('setClubs', clubs)
+          resolve(response)
+        }).catch(err => {
           commit('setError')
 
           reject(err)
@@ -171,15 +174,15 @@ export default createStore({
       })
     },
 
-    news({commit}){
-      return new Promise((resolve, reject)=>{
+    news({ commit }) {
+      return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/news"
-        ).then(response=>{
-            const news = response.data
-            commit('setNews', news)
+        ).then(response => {
+          const news = response.data
+          commit('setNews', news)
 
-            resolve(response)
-        }).catch(err => { 
+          resolve(response)
+        }).catch(err => {
 
           commit('setError')
 
@@ -188,15 +191,15 @@ export default createStore({
       })
     },
 
-    rooms({commit}){
-      return new Promise((resolve, reject)=>{
+    rooms({ commit }) {
+      return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/rooms"
-        ).then(response=>{
-            const rooms = response.data
-            commit('setRooms', rooms)
+        ).then(response => {
+          const rooms = response.data
+          commit('setRooms', rooms)
 
-            resolve(response)
-        }).catch(err => { 
+          resolve(response)
+        }).catch(err => {
 
           commit('setError')
 
@@ -205,94 +208,135 @@ export default createStore({
       })
     },
 
-    roomDetail({commit}, roomId){
-      return new Promise((resolve, reject)=>{
-        axios.get("http://localhost:3000/rooms/"+ roomId
-        ).then(response=>{
+    roomDetail({ commit }, roomId) {
+      return new Promise((resolve, reject) => {
+        axios.get("http://localhost:3000/rooms/" + roomId
+        ).then(response => {
           const room = response.data
           commit("setRoomInfo", room)
           resolve(response)
-        }).catch(err=>{
+        }).catch(err => {
           commit("setError")
           reject(err)
         })
       })
     },
 
-    bookRoom({commit}, reservation){
-      return new Promise((resolve, reject)=>{
-        axios.post("http://localhost:3000/reservations",{
+    bookRoom({ commit }, reservation) {
+      return new Promise((resolve, reject) => {
+        axios.post("http://localhost:3000/reservations", {
           id: reservation.id,
           user: reservation.user,
           room: reservation.room,
           slot: reservation.slot,
           date: reservation.date
-        }).then(response=>{
-            resolve(response)
-        }).catch(err => { 
+        }).then(response => {
+          resolve(response)
+        }).catch(err => {
           commit('setError')
           reject(err)
         })
       })
     },
 
-    userReservations({commit}, user){
-      return new Promise((resolve, reject)=>{
+    userReservations({ commit }, user) {
+      return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/reservations"
-        ).then(response=>{
+        ).then(response => {
           let filteredReservations = [];
-          response.data.forEach(function(item){
-          if(item.user == user){
-            filteredReservations.push(item);
-         }
-        });
+          response.data.forEach(function (item) {
+            if (item.user == user) {
+              filteredReservations.push(item);
+            }
+          });
           commit("setUserReservations", filteredReservations)
           resolve(response)
-        }).catch(err=>{
+        }).catch(err => {
           commit("setError")
           reject(err)
         })
       })
     },
 
-    userClubs({commit}, user){
-      return new Promise((resolve, reject)=>{
+    userClubs({ commit }, user) {
+      return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/clubs"
-        ).then(response=>{
+        ).then(response => {
           let filteredClubs = [];
-          response.data.forEach(function(club){
-            club.subscribers.forEach(function(id){
-              if(user == id){
+          response.data.forEach(function (club) {
+            club.subscribers.forEach(function (id) {
+              if (user == id) {
                 filteredClubs.push(club);
               }
             })
           });
           commit("setUserClubs", filteredClubs)
           resolve(response)
-        }).catch(err=>{
+        }).catch(err => {
           commit("setError")
           reject(err)
         })
       })
     },
 
-    deleteUserReservation({commit},id){
-      return new Promise((resolve, reject)=>{
-        axios.delete("http://localhost:3000/reservations/"+id
-        ).then(response=>{
-          commit("setReservations")
+    deleteUserReservation({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete("http://localhost:3000/reservations/" + id
+        ).then(response => {
+          //commit("setReservations")
           resolve(response)
-        }).catch(err=>{
+        }).catch(err => {
           commit("setError")
           reject(err)
         })
       })
     },
+
+    users({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios.get("http://localhost:3000/users"
+        ).then(response => {
+          const users = response.data
+          commit('setUsers', users)
+          resolve(response)
+        }).catch(err => {
+          commit('setError')
+          reject(err)
+        })
+      })
+    },
+
+    deleteUser({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios.delete("http://localhost:3000/users/" + id
+        ).then(response => {
+          console.log("User successfully deleted")
+          resolve(response)
+        }).catch(err => {
+          commit("setError")
+          reject(err)
+        })
+      })
+    },
+
+    modifyUser({ commit }, user) {
+      return new Promise((resolve, reject) => {
+        axios.patch("http://localhost:3000/users/" + user.id, user
+        ).then(response => {
+          console.log("User updated")
+          resolve(response)
+        }).catch(err => {
+          commit("setError")
+          reject(err)
+        })
+      })
+    }
+
 
   },
   modules: {
   },
-  plugins:[
+  plugins: [
     createFlashStore()
   ]
 })
