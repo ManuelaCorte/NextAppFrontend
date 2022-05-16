@@ -88,13 +88,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLoggedIn
+  const user = store.getters.getUser
   if (isLoggedIn) {
     if(to.name == "home"){
       next({name: "dashboard"})
     }else{
-      next()
-    }
-    
+      if((to.name == "dashboardAdmin" && user.role != "admin") ){
+        next({name: "dashboard"})
+      }else{
+        next()
+      }  
+    }  
   } else {
       if(to.name == "home" || to.name == "login" || to.name == "noAuth" || to.name == "register"){
         next();

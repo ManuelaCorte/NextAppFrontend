@@ -2,6 +2,9 @@
 import { defineComponent } from "vue"
   export default defineComponent({
       computed: {
+      user() {
+        return this.$store.getters.getUser
+      },
       isLoggedIn() {
         return this.$store.getters.isLoggedIn;
       },
@@ -38,7 +41,7 @@ import { defineComponent } from "vue"
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="user.role == 'admin'" class="nav-item">
             <router-link to="/dashboardAdmin" class="nav-link">DashboardAdmin</router-link>
           </li>
           <li class="nav-item">

@@ -47,9 +47,7 @@ export default defineComponent({
       }).catch(err => {
         console.log(err)
       })
-      var myModalEl = document.getElementById('changePassword')
-      var modal = Modal.getInstance(myModalEl)
-      modal.hide()
+      this.hideModal("changePassword")
     },
 
     deleteProfile(userId) {
@@ -64,10 +62,14 @@ export default defineComponent({
       }).catch(err => {
         console.log(err);
       });
-      var myModalEl = document.getElementById('deleteProfile')
-      var modal = Modal.getInstance(myModalEl)
-      modal.hide()
-    }
+      this.hideModal('deleteProfile')
+    },
+
+     hideModal(modalId){
+            var myModalEl = document.getElementById(modalId)
+            var modal = Modal.getInstance(myModalEl)
+            modal.hide()
+        }
   }
 })
 </script>
