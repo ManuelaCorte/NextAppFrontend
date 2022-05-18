@@ -46,6 +46,7 @@ export default {
             }).catch(err => {
                 console.log(err)
             })
+            this.registeredUser = {}
             this.hideModal('addUser')
         },
 
@@ -71,28 +72,29 @@ export default {
                     }
                 });
                 this.$store.commit("setUsers", this.users)
-                this.selectedUser = {}
             }).catch(err => {
                 console.log(err)
             })
             this.hideModal("modifyUser")
         },
 
-        restoreUser(user){
-            //this.users = this.users.filter(user => user.id != userId)
-            /*const index = this.users.findIndex(element=>{
-                element.id == user.id
+        revertChanges(){
+            /*var index;
+            for(let i=0; i<this.users.length; i++){
+                if(this.users[i].id == modifiedUserId){
+                    index = i
+                }
+            }
+            console.log(this.loadedUsers[index])*/
+            this.$store.dispatch("users"
+            ).then(response=>{
+                this.users = response.data
+                this.$store.commit("setUsers", this.users)
+                this.modifiedUser = {}
+            }).catch(err=>{
+                this.modifiedUser = {}
+                console.log(err)
             })
-            let localUsers = this.loadedUsers
-            var index = localUsers.map(function(item) {return item.id; }).indexOf(user.id);
-            console.log(this.loadedUsers.index)
-            this.users[index] = this.loadedUsers[index]
-            //console.log(this.user[index])
-            */
-            //TODO: fix function
-            console.log(user)
-            this.users = this.$store.getters.getUsers
-            console.log(this.users)
             this.hideModal("modifyUser")
         },
 
@@ -257,7 +259,7 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Change user's information</h5>
-                    <button type="button" class="btn-close"  @click="restoreUser(this.selectedUser)" aria-label="Close"></button>
+                    <button type="button" class="btn-close"  @click="revertChanges(this.selectedUser.id)" aria-label="Close"></button>
                 </div> 
                     <div class="modal-body">
                     <form>
@@ -280,7 +282,7 @@ export default {
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="restoreUser(this.selectedUser)">Close</button>
+                    <button type="button" class="btn btn-secondary" @click="revertChanges(this.selectedUser.id)">Close</button>
                     <button type="submit" class="btn btn-primary" @click="modifyUser(this.selectedUser)">Confirm
                         changes</button>
                 </div>

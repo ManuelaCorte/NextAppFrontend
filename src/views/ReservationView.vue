@@ -54,6 +54,9 @@ export default defineComponent({
             this.showSlots = true
         },
 
+        /* TODO
+            if user already has booked for that slot the they can't reserve it again
+        */
         handleBooking(roomId, slot) {
             console.log(slot)
             let reservation = {

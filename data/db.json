@@ -157,8 +157,17 @@
   ],
   "users": [
     {
+      "email": "prova@prova",
+      "password": "$2a$10$HeljjZcBkLdvQLpG2yLUCOi7gtFNfuzBawJG.jNbkRTcnhsRmllR2",
+      "id": 72,
+      "username": "prova",
+      "firstName": "prova",
+      "lastName": "prova",
+      "role": "user"
+    },
+    {
       "email": "user0@gmail.com",
-      "password": "$2a$10$4Dk0BfUyXcLpaqLUNRSIWuTaji5ulA2/urOYGSE0nb/C.FrmDcuTq",
+      "password": "$2a$10$gf5hg6s.OyPQTQA7JuC.hOH.1shAd4B1FrWmGdsVk5JrCm4qF6GtS",
       "id": 0,
       "username": "user0",
       "firstName": "Name0",
@@ -166,31 +175,13 @@
       "role": "user"
     },
     {
-      "email": "user1@gmail.com",
-      "password": "$2a$10$cntkrnla8h4xpb5DhRjIVOKmr67hG5gAJTcTZOdZ/aYbLtjW1rvCK",
-      "id": 1,
-      "username": "user1",
-      "firstName": "Name1",
-      "lastName": "Surname1",
-      "role": "user"
-    },
-    {
       "email": "example@gmail.com",
-      "password": "$2a$10$UIUzdRn.ZvQJ.YEPnG5rmeue2KVq0sETdKkar6zJsh4nQdUkMWFEi",
+      "password": "$2a$10$Jf5Iv7RJpb1AbvTi8BB/mO6CHEy0oXTwTvS3VCUh.51ScjCd7rYc.",
       "id": 2,
       "username": "example",
-      "firstName": "name",
-      "lastName": "surname",
+      "firstName": "Name",
+      "lastName": "Surname",
       "role": "admin"
-    },
-    {
-      "email": "prova@prova",
-      "password": "$2a$10$B3VDXsEgDyAupnBKaMxZIunc6oo2rGPzmR.3j9zNccxGWcGrj3mTC",
-      "id": 62,
-      "username": "prova",
-      "firstName": "prova",
-      "lastName": "prova",
-      "role": "user"
     }
   ],
   "news": [
@@ -254,6 +245,13 @@
       "room": 0,
       "slot": 2,
       "date": "15/5/2022"
+    },
+    {
+      "id": 5,
+      "user": 72,
+      "room": 0,
+      "slot": 1,
+      "date": "28/5/2022"
     }
   ]
 }

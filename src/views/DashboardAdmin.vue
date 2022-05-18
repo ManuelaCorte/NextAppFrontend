@@ -39,7 +39,8 @@ export default defineComponent({
         }
     },
     components:{
-        UsersManagement
+        UsersManagement, 
+        RoomsManagement
     }
 })
 </script>

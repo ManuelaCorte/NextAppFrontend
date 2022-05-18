@@ -21,15 +21,13 @@ export default defineComponent({
       axios.get("http://localhost:3000/users/" + userId
       ).then(response => {
         const data = response.data
-        //console.log(data)
         if (bcrypt.compareSync(this.oldPassword, data.password)) {
           axios.patch("http://localhost:3000/users/" + userId, {
             password: this.newPassword //json-server-auth automatically hashes it
           }).then(() => {
-            console.log("Password correttmente cambiata")
+            console.log("Password changed")
             this.oldPassword = ""
             this.newPassword = ""
-
             this.$store.dispatch("logout"
             ).then(() => {
               this.$router.push("/")
@@ -38,15 +36,18 @@ export default defineComponent({
             })
 
           }).catch(err => {
+            this.oldPassword = ""
+            this.newPassword = ""
             console.log(err)
           })
         } else {
-          console.log("password diverse")
+          console.log("The old password doesn't match with the current one")
         }
 
       }).catch(err => {
         console.log(err)
       })
+      
       this.hideModal("changePassword")
     },
 
@@ -85,7 +86,7 @@ export default defineComponent({
                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                 <img src="../assets/defaultProfile.jpg" alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                 <h5>{{ user.username }}</h5>
-                <p>Role</p>
+                <p>{{ user.role }}</p>
                 <i class="far fa-edit mb-5"></i>
               </div>
               <div class="col-md-8">

@@ -48,7 +48,7 @@
           </div>
           <div class="text-center mb-2">
             <label>
-              <router-link to="/register">First time? Click here to signup</router-link>
+              <router-link to="/"> Forgot your password? </router-link>
             </label>
           </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
