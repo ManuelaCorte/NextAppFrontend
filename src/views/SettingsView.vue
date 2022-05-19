@@ -67,8 +67,8 @@ export default defineComponent({
     },
 
      hideModal(modalId){
-            var myModalEl = document.getElementById(modalId)
-            var modal = Modal.getInstance(myModalEl)
+            const myModalEl = document.getElementById(modalId)
+            const modal = Modal.getInstance(myModalEl)
             modal.hide()
         }
   }

@@ -53,7 +53,7 @@ export default {
         deleteUser(userId) {
             this.$store.dispatch("deleteUser", userId
             ).then(() => {
-                this.users = this.users.filter(user => user.id != userId)
+                this.users = this.users.filter(user => user.id !== userId)
                 this.$store.commit("setUsers", this.users)
                 //console.log(this.users)
             }).catch(err => {
@@ -67,7 +67,7 @@ export default {
             ).then((respose) => {
                 const data = respose.data
                 this.users.forEach(element => {
-                    if (element.id == data.id) {
+                    if (element.id === data.id) {
                         element = data
                     }
                 });
@@ -99,7 +99,7 @@ export default {
         },
 
         changeRole(user, index){
-            if(user.role == "admin"){
+            if(user.role === "admin"){
                 user.role = "user"
             }else{
                 user.role = "admin"
@@ -109,8 +109,8 @@ export default {
             this.$store.commit("setUsers", this.users)
         },
         hideModal(modalId) {
-            var myModalEl = document.getElementById(modalId)
-            var modal = Modal.getInstance(myModalEl)
+            const myModalEl = document.getElementById(modalId)
+            const modal = Modal.getInstance(myModalEl)
             modal.hide()
         }
     }
@@ -148,13 +148,13 @@ export default {
                                         <td>
                                             <div class="text-right">
                                                 <div class="btn-group" role="toolbar">
-                                                    <div v-if="user.role == 'user'">
+                                                    <div v-if="user.role === 'user'">
                                                         <button type="button" class="btn btn-primary me-2"
                                                             
                                                             @click="this.changeRole(user, i)"> Upgrade to admin
                                                         </button>
                                                     </div>
-                                                    <div v-else-if="this.user.id != user.id">
+                                                    <div v-else-if="this.user.id !== user.id">
                                                         <button type="button" class="btn btn-primary me-2"
                                                              
                                                             @click="this.changeRole(user, i)"> Downgrade to user
@@ -297,21 +297,6 @@ export default {
 <style>
 body {
     height: 100%;
-}
-
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-}
-
-.form-signin .checkbox {
-    font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-    z-index: 2;
 }
 
 .form-signin input[type="email"] {

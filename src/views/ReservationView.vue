@@ -18,8 +18,8 @@ export default defineComponent({
             date: new Date(),
             showRooms: false,
             showSlots: false,
-            minDate: {},
-            maxDate: {}
+            minDate: "",
+            maxDate: ""
         }
     },
     computed: {

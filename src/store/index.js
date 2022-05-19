@@ -73,9 +73,10 @@ export default createStore({
     },
     setNews(state, news) {
       state.news = news
-      if (state.clubs.len == 0) {
+      //TODO: fix if clause
+      if (state.clubs.len === 0) {
         for (const i in news) {
-          var clubId = state.news[i].club
+          let clubId = state.news[i].club
           state.news[i].club = state.clubs[clubId].name
         }
       }
@@ -245,7 +246,7 @@ export default createStore({
         ).then(response => {
           let filteredReservations = [];
           response.data.forEach(function (item) {
-            if (item.user == user) {
+            if (item.user === user) {
               filteredReservations.push(item);
             }
           });
@@ -265,7 +266,7 @@ export default createStore({
           let filteredClubs = [];
           response.data.forEach(function (club) {
             club.subscribers.forEach(function (id) {
-              if (user == id) {
+              if (user === id) {
                 filteredClubs.push(club);
               }
             })

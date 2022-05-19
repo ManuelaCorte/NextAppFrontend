@@ -47,7 +47,7 @@ export default defineComponent({
         this.$store.dispatch("news").then(() => {
             this.clubs.forEach(club => {
                 this.loadedNews.forEach(news => {
-                    if (news.club == club.id) {
+                    if (news.club === club.id) {
                         this.news.push(news);
                     }
                 });
@@ -65,13 +65,13 @@ export default defineComponent({
         deleteReservation(reservationId) {
             this.$store.dispatch("deleteUserReservation", reservationId
             ).then(() => {
-                this.reservations= this.reservations.filter(reservation=>reservation.id != reservationId)
+                this.reservations= this.reservations.filter(reservation=>reservation.id !== reservationId)
                 this.$store.commit("setUserReservations", this.reservations)
             }).catch(err => {
                 console.log(err);
             });
-            var myModalEl = document.getElementById('confirm')
-            var modal = Modal.getInstance(myModalEl)
+            const myModalEl = document.getElementById('confirm')
+            const modal = Modal.getInstance(myModalEl)
             modal.hide()
         }
     }
@@ -172,14 +172,4 @@ a:link {
     background-color: red;
 }
 
-.example {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 300px;
-    width: 400px;
-    background: gray;
-    text-align: center
-}
 </style>

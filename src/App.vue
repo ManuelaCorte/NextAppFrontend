@@ -32,16 +32,13 @@ import { defineComponent } from "vue"
 <nav v-if="isLoggedIn" class="navbar navbar-expand navbar-dark fixed-top bg-dark" aria-label="Second navbar example">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">NextApp</router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
       <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
           </li>
-          <li v-if="user.role == 'admin'" class="nav-item">
+          <li v-if="user.role === 'admin'" class="nav-item">
             <router-link to="/dashboardAdmin" class="nav-link">DashboardAdmin</router-link>
           </li>
           <li class="nav-item">
@@ -115,9 +112,6 @@ body {
       color: red !important;
       border-color: red !important;
   }
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,0,0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important; 
-}
 
 .navbar-toggler {
   border-color: red !important;
