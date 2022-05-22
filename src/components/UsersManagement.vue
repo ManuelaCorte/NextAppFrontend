@@ -104,9 +104,16 @@ export default {
             }else{
                 user.role = "admin"
             }
-            this.users[index] = user
-            //console.log(this.users)
-            this.$store.commit("setUsers", this.users)
+            this.$store.dispatch("modifyUser", user
+            ).then(response =>{
+              this.users[index] = response.data
+              console.log(this.users)
+              this.$store.commit("setUsers", this.users)
+            }).catch(err=>{
+              console.log(err)
+            })
+
+
         },
         hideModal(modalId) {
             const myModalEl = document.getElementById(modalId)
@@ -141,40 +148,45 @@ export default {
                                 </thead>
                                 <tbody>
                                     <tr v-for="(user, i) in this.users" :key="user.id">
-                                        <th scope="row">{{ user.id }}</th>
+                                        <th scope="row">{{ i+1 }}</th>
                                         <td>{{ user.username }}</td>
                                         <td>{{ user.email }}</td>
                                         <td>{{ user.firstName }} {{ user.lastName }}</td>
                                         <td>
                                             <div class="text-right">
                                                 <div class="btn-group" role="toolbar">
-                                                    <div v-if="user.role === 'user'">
-                                                        <button type="button" class="btn btn-primary me-2"
+
+                                                        <button v-if="user.role === 'user'" type="button" class="btn btn-primary me-2"
                                                             
                                                             @click="this.changeRole(user, i)"> Upgrade to admin
                                                         </button>
-                                                    </div>
-                                                    <div v-else-if="this.user.id !== user.id">
-                                                        <button type="button" class="btn btn-primary me-2"
-                                                             
-                                                            @click="this.changeRole(user, i)"> Downgrade to user
+
+
+                                                        <button v-else-if="this.user.id !== user.id" type="button" class="btn btn-primary me-2"
+                                                                @click="this.changeRole(user, i)"> Downgrade to user
                                                         </button>
-                                                    </div>
-                                                    <div v-else>
-                                                        <button type="button" class="btn btn-secondary me-2"
-                                                             
+
+
+                                                        <button v-else type="button" class="btn btn-secondary me-2"
                                                             @click="this.changeRole(user, i)" disabled> Downgrade to user
                                                         </button>
-                                                    </div>
+
 
                                                     <button type="button" class="btn btn-primary me-2"
                                                         data-bs-toggle="modal" data-bs-target="#modifyUser"
                                                         @click="selectedUser = user"> Modify
                                                     </button>
-                                                    <button type="button" class="btn btn-primary me-2"
-                                                        data-bs-toggle="modal" data-bs-target="#deleteUser"
-                                                        @click="selectedUser = user"> Delete
-                                                    </button>
+
+                                                      <button v-if="this.user.id !== user.id" type="button" class="btn btn-primary me-2"
+                                                              data-bs-toggle="modal" data-bs-target="#deleteUser"
+                                                              @click="selectedUser = user"> Delete
+                                                      </button>
+
+
+                                                    <button v-else type="button" class="btn btn-secondary me-2"
+                                                          data-bs-toggle="modal" data-bs-target="#deleteUser"
+                                                          @click="selectedUser = user" disabled> Delete
+                                                  </button>
                                                 </div>
                                             </div>
 

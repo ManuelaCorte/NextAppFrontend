@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-import { createFlashStore } from 'vuex-flash';
 
 export default createStore({
   state: {
@@ -33,7 +32,7 @@ export default createStore({
       return state.news
     },
     getNewsClub(state, newId) {
-      return state.news[newId].club
+      return state.news[newId]
     },
     getRooms(state) {
       return state.rooms
@@ -128,6 +127,7 @@ export default createStore({
 
     register({ commit }, user) {
       return new Promise((resolve, reject) => {
+        console.log(user)
         axios.post("http://localhost:3000/users", {
           id: user.id,
           email: user.email,
@@ -297,7 +297,10 @@ export default createStore({
       return new Promise((resolve, reject) => {
         axios.get("http://localhost:3000/users"
         ).then(response => {
-          const users = response.data
+          let users = response.data
+          users.forEach(user =>{
+            delete user.password
+          })
           commit('setUsers', users)
           resolve(response)
         }).catch(err => {
@@ -331,13 +334,22 @@ export default createStore({
           reject(err)
         })
       })
-    }
+    },
+
+    addRoom({commit}, room){
+      return new Promise((resolve, reject)=>{
+        axios.post("http://localhost:3000/rooms", room
+        ).then(response=>{
+          resolve(response)
+        }).catch(err=>{
+          commit("setError")
+          reject(err)
+        })
+     })
+    },
 
 
   },
   modules: {
-  },
-  plugins: [
-    createFlashStore()
-  ]
+  }
 })

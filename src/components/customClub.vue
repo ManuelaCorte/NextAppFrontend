@@ -14,7 +14,7 @@ export default defineComponent({
 
 <template >
   <div>
-    Club id: {{this.id}}
+    Club id: {{id}}
   </div>
 </template>
 <style>

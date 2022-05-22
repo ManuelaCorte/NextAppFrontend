@@ -12,6 +12,7 @@ import DashBoard from '../views/DashBoard.vue'
 import NoAuthenticated from "../views/noAuthenticated.vue"
 import SettingsView from '@/views/SettingsView.vue'
 import DashboardAdmin from '@/views/DashboardAdmin.vue'
+import RoomDetails from "@/components/RoomDetails";
 
 const routes = [
   {
@@ -70,6 +71,12 @@ const routes = [
     path: "/dashboardAdmin",
     name: "dashboardAdmin",
     component: DashboardAdmin
+  },
+  {
+    path: "/roomDetails/:id",
+    name: "roomDetails",
+    component: RoomDetails,
+    props: true
   }
   
   
@@ -84,17 +91,17 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLoggedIn
   const user = store.getters.getUser
   if (isLoggedIn) {
-    if(to.name == "home"){
+    if(to.name === "home"){
       next({name: "dashboard"})
     }else{
-      if((to.name == "dashboardAdmin" && user.role != "admin") ){
+      if((to.name === "dashboardAdmin" && user.role !== "admin") ){
         next({name: "dashboard"})
       }else{
         next()
       }  
     }  
   } else {
-      if(to.name == "home" || to.name == "login" || to.name == "noAuth" || to.name == "register"){
+      if(to.name === "home" || to.name === "login" || to.name === "noAuth" || to.name === "register"){
         next();
       }else{
         next({name: "noAuth"})
